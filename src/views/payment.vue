@@ -15,8 +15,8 @@
         <span class="mr-2">Итоговая сумма:</span>
         <span class="text-nowrap">{{calculation.totalSumm}} &#8376;</span>
     </div>
-    <div v-show="!isValid" class="text-danger error-text mt-5">
-        Пожалуйста, заполните все поля карты. Cумма платежа не менее 500 тенге
+    <div v-show="!isValid" class="error-text mt-5 text-center text-danger">
+        Пожалуйста, заполните все поля.
     </div>
     <button
         type="submit"
@@ -59,7 +59,7 @@ export default {
             if (value.match(/\D/)) {
                 value = value.match(/\d/) ? value.match(/\d+/g).join('') : ''
             }
-            event.target.value = value ? Intl.NumberFormat().format(value) : ''
+            event.target.value = +value ? Intl.NumberFormat().format(value) : ''
             this.setSumm(event.target.value)
             if (event.data === null) {
                 event.target.setSelectionRange(selectionStart, selectionEnd)

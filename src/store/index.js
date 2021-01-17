@@ -59,23 +59,21 @@ export default new Vuex.Store({
     calculation: state => {
       if (state.summ) {
         const value = state.summ.match(/\d/) ? +state.summ.match(/\d+/g).join('') : 0
-        if (value >= 500) {
-            return {
-                commision: Intl.NumberFormat().format(value / 100),
-                totalSumm: Intl.NumberFormat().format(Math.abs(value - value / 100))
-            }
+        return {
+          commision: value <= 50000 ? 500 : Intl.NumberFormat().format(value / 100),
+          totalSumm: value <= 50000 ? value + 500 : Intl.NumberFormat().format(value + value / 100)
         }
       }
       return {
-          commision: 0,
-          totalSumm: 0
+        commision: 0,
+        totalSumm: 0
       }
     }
   }
 })
 
 function validatePayment(card, summ) {
-  if (+summ < 500) return false
+  if (!summ) return false
 
   for (const digit in card.numbers) {
     if (!card.numbers[digit] || card.numbers[digit].length !== 4) return false
