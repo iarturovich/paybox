@@ -1,0 +1,187 @@
+#app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
+    max-width: 960px;
+    padding-top: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+}
+.card {
+    width: 400px;
+    height: 250px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    box-shadow: 0px 0px 13px 0px #969696;
+}
+.card-red {
+    background: linear-gradient(to top left, #FE3939 20%, #F85E5E 50%, #DC5E5E 80%);
+    position: sticky;
+}
+.card-input {
+    height: 40px;
+    background: #420f0f75;
+    border: none;
+    border-radius: 5px;
+    font-size: 26px;
+    padding: 9px;
+    color: wheat;
+}
+.card-input-number {
+    width: 75px;
+}
+.card-input-name {
+    width: 220px;
+}
+.card-input-date {
+    width: 50px;
+}
+.card-input-cvc {
+    width: 65px;
+    color: #000;
+}
+.input-payment {
+    width: 100%;
+    height: 40px;
+    border: 2px solid;
+    border-radius: 20px;
+    font-size: 26px;
+    padding: 0 10px;
+}
+.input-payment::-moz-placeholder {
+    color: gray;
+}
+.input-payment::-webkit-input-placeholder {
+    color: #ccc;
+}
+.input-payment:-ms-input-placeholder {
+    color: #ccc;
+}
+.input-payment:focus {
+    box-shadow: 0 0 0 .2rem rgba(41, 115, 255, 0.5);
+}
+.card-gray {
+    background: #878787bf;
+    margin-top: -180px;
+    margin-left: 25px;
+    padding-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.magnet {
+    background: #1f1f1f;
+    margin-top: 50px;
+    height: 50px;
+}
+.dropdown {
+    position: absolute;
+    width: 100%;
+    z-index: 1000;
+}
+.active {
+    background: #fe3939;
+}
+.rounded {
+    width: 100px;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 50px;
+    color: #fff;
+    
+}
+.font-size-20px {
+    font-size: 20px;
+}
+.success {
+    background: #26ed26;
+}
+.error {
+    background: red;
+}
+.payment {
+    min-width: 250px;
+}
+.error-text {
+    font-size: 13px;
+}
+
+@media(max-width: 770px) {
+    .input-payment {
+        width: 100%;
+    }
+    .payment {
+        width: auto;
+    }
+}
+@media(max-width: 720px) {
+    .card {
+        width: auto;
+    }
+    .card-gray {
+        margin-left: 0;
+    }
+    .card-input, .input-payment, .btn {
+        font-size: 20px;
+        text-align: center;
+    }
+    .card-input-name {
+        margin-right: 0.75rem;
+    }
+    .spiner div {
+        margin: 0 20px;
+    }
+}
+@media(max-width: 690px) {
+    .card-input-name {
+        width: calc(100% - 130px);
+    }
+}
+@media(max-width: 640px) {
+    .payment {
+        min-width: calc(100% - 340px);
+    }
+    .card-input-number {
+        width: 70px;
+    }
+}
+@media(max-width: 560px) {
+    .flex-wrap-mobile {
+        flex-wrap: wrap;
+    }
+    #app {
+        padding-top: 1rem;
+    }
+    .card {
+        width: 100%;
+    }
+    .card-gray {
+        margin-left: 25px;
+    }
+    .payment {
+        width: 100%;
+        margin-left: 0;
+        padding-top: 2rem;
+    }
+}
+@media(max-width: 450px) {
+    .card-gray {
+        margin-left: 0;
+    }
+}
+@media(max-width: 360px) {
+    .card-gray {
+        margin-left: 0;
+    }
+    .card-input-number {
+        width: 58px;
+        padding: 6px;
+    }
+}
