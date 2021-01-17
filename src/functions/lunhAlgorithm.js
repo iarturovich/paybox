@@ -1,9 +1,8 @@
 export default function (cardNumbers) {
     const digits = []
     for (const number in cardNumbers) {
-        digits.push(...Array.from(cardNumbers[number]))
+        digits.push(...cardNumbers[number])
     }
-
     const evens = []
     const unEvens = []
 
@@ -20,6 +19,7 @@ export default function (cardNumbers) {
     })
     const reducer = (accumulator, currentValue) => accumulator + currentValue
     const summ = unEvens.reduce(reducer) + evens.reduce(reducer)
+
     if (summ % 10 !== 0) {
         return {
             summ,

@@ -47,7 +47,6 @@
         </div>
         <div class="d-flex mt-2">
           <input
-            id="name"
             class="card-input card-input-name text-left"
             type="text"
             v-model.trim="card.name"
