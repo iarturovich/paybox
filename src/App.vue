@@ -54,19 +54,15 @@
             :disabled="disabled"
             @input="inputCardName">
           <dropdown
-            inputId="month"
             :list="months"
             :value="card.month"
             @input="card.month = $event"
-            nextTab="year"
             class="ml-auto"
           />
           <span class="mx-1" style="font-size: 34px;">/</span>
           <dropdown
-            inputId="year"
             :list="years"
             :value="card.year"
-            nextTab="cvc"
             @input="card.year = $event"
           />
         </div>
@@ -111,13 +107,10 @@ export default {
       if (value.match(/\D/)) {
         value = value.match(/\d/) ? value.match(/\d+/g).join('') : ''
       }
-      if (value.length > 3) {
-        value = value.slice(0, 3)
-      }
-      if (value.length === 3 && document.querySelectorAll('input').item(8)) {
-        document.querySelectorAll('input').item(8).focus()
-        document.querySelectorAll('input').item(8).setSelectionRange(0, 0)
-      }
+      if (value.length > 3) value = value.slice(0, 3)
+
+      if (value.length === 3)  this.selectTab()
+
       this.card.cvc = event.target.value = value
     },
     onDeleteCardNumber (event) {
@@ -141,15 +134,16 @@ export default {
         }
       }
       if (value.length >= 4 && selectionStart >= 4) {
-        if (event.target.nextSibling) {
-          event.target.nextSibling.focus()
-          event.target.nextSibling.setSelectionRange(0, 0)
-        } else {
-          document.getElementById('name').focus()
-        }
+        this.selectTab()
       }
       this.card.numbers[input] = event.target.value = value
       event.target.setSelectionRange(selectionStart, selectionEnd)
+    },
+    selectTab () {
+      const nodeList = document.querySelectorAll('input')
+      const nextIndex = [...nodeList].findIndex(f => f === event.target) + 1
+      nodeList.item(nextIndex).focus()
+      nodeList.item(nextIndex).setSelectionRange(0, 0)
     },
     inputCardName() {
       this.card.name = this.card.name.toUpperCase()

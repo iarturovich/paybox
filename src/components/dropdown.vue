@@ -1,12 +1,10 @@
 <template>
     <div class="position-relative">
         <input
-            data-dropdown="dropdown"
-            :id="inputId"
             class="card-input card-input-date"
             type="text"
             @focus="toogleDropdown(true)"
-            @keydown.tab="toogleDropdown(false)"
+            @keydown.tab.prevent="selectTab"
             :value="value"
             :disabled="disabled"
             @input="onInput"
@@ -27,37 +25,37 @@
 import { mapState } from 'vuex'
 export default {
     props: {
-        inputId: {
-            type: String,
-            required: true
-        },
         value: {
             required: true
         },
         list: {
             type: Array,
             required: true
-        },
-        nextTab: {
-            type: String
         }
     },
-    data() {
+    data () {
         return {
             isOpen: false
+        }
+    },
+    watch: {
+        isOpen (newValue) {
+            if (newValue) window.addEventListener('click', this.onClick)
+            else window.removeEventListener('click', this.onClick)
         }
     },
     computed: {
         ...mapState(['disabled'])
     },
-    mounted() {
-        window.addEventListener('click', this.onClick)
-    },
-    destroyed() {
-        window.removeEventListener('click', this.onClick)
-    },
     methods: {
-        onInput(event) {
+        selectTab () {
+            const nodeList = document.querySelectorAll('input')
+            const nextIndex = [...nodeList].findIndex(f => f === event.target) + 1
+            nodeList.item(nextIndex).focus()
+            nodeList.item(nextIndex).setSelectionRange(0, 0)
+            this.toogleDropdown(false)
+        },
+        onInput (event) {
             let value = event.target.value
             if (value.match(/\D/)) {
                 value = value.match(/\d/) ? value.match(/\d+/g).join('') : ''
@@ -65,22 +63,20 @@ export default {
             if (value.length > 2) {
                 value = value.slice(0, 2)
             }
-            if (value.length >= 2) {
-                if (this.nextTab) {
-                    document.getElementById(this.nextTab).focus()
-                } else {
-                    event.target.nextSibling.focus()
-                }
-                this.toogleDropdown(false)
+            if (value.length === 2 && !this.list.includes(value)) {
+                value = ''
+            } else if (value.length === 2) {
+                this.selectTab(event)
             }
+
             event.target.value = value
             this.$emit('input', value)
         },
-        toogleDropdown(value) {
+        toogleDropdown (value) {
             this.isOpen = value
         },
-        onClick(event) {
-            if (event.target.dataset.dropdown !== 'dropdown') {
+        onClick (event) {
+            if (this.$el.firstChild !== event.target) {
                 this.toogleDropdown(false)
             }
         }
