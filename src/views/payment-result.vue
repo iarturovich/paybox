@@ -9,8 +9,8 @@
     </div>
     <div v-if="isSuccessPay">
         <div class="mb-2">Отправитель: {{card.name}}</div>
-        <div class="mb-2">Сумма: {{calculation.totalSumm}}</div>
-        <div>Коммисия: {{calculation.commision}}</div>
+        <div class="mb-2">Сумма: {{Intl.NumberFormat().format(calculation.totalSumm)}}</div>
+        <div>Коммисия: {{Intl.NumberFormat().format(calculation.commision)}}</div>
     </div>
     <span v-else>
         Попробуйте еще раз

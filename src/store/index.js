@@ -60,8 +60,8 @@ export default new Vuex.Store({
       if (state.summ) {
         const value = state.summ.match(/\d/) ? +state.summ.match(/\d+/g).join('') : 0
         return {
-          commision: value <= 50000 ? 500 : Intl.NumberFormat().format(value / 100),
-          totalSumm: value <= 50000 ? value + 500 : Intl.NumberFormat().format(value + value / 100)
+          commision: value <= 50000 ? 500 : value / 100,
+          totalSumm: value <= 50000 ? value + 500 : value + value / 100
         }
       }
       return {

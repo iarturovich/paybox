@@ -9,11 +9,11 @@
         :value="summ">
     <div class="d-flex justify-content-between mt-5">
         <span>Коммисия:</span>
-        <span class="text-nowrap">{{calculation.commision}} &#8376;</span>
+        <span class="text-nowrap">{{Intl.NumberFormat().format(calculation.commision)}} &#8376;</span>
     </div>
     <div class="d-flex justify-content-between mt-3">
         <span class="mr-2">Итоговая сумма:</span>
-        <span class="text-nowrap">{{calculation.totalSumm}} &#8376;</span>
+        <span class="text-nowrap">{{Intl.NumberFormat().format(calculation.totalSumm)}} &#8376;</span>
     </div>
     <div v-show="!isValid" class="error-text mt-5 text-center text-danger">
         Пожалуйста, заполните все поля.
