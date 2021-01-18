@@ -1,23 +1,30 @@
 <template>
-<div class="text-center w-100 mx-auto">
-    <div :class="[isSuccessPay ? 'success' : 'error', 'rounded mb-3']">
+<div class="w-100 mx-auto">
+    <div :class="[isSuccessPay ? 'success' : 'error', 'rounded mb-3 text-azure text-center']">
         <span v-if="isSuccessPay">&#10004;</span>
         <span v-else>&#10006;</span>
     </div>
-    <div class="font-size-20px mb-3">
+    <div class="text-center font-size-20px mb-3">
         {{isSuccessPay ? 'Перевод совершен' : 'Ошибка платежа'}}
     </div>
     <div v-if="isSuccessPay">
-        <div class="mb-2">Отправитель: {{card.name}}</div>
-        <div class="mb-2">Сумма: {{Intl.NumberFormat().format(calculation.totalSumm)}}</div>
-        <div>Коммисия: {{Intl.NumberFormat().format(calculation.commision)}}</div>
+        <div class="mb-2 d-flex payment">
+            <span class="w-40 mr-2 text-right">Отправитель:</span>
+            <span class="w-60">{{card.name}}</span>
+        </div>
+        <div class="mb-2 d-flex">
+            <span class="w-40 mr-2 text-right">Сумма:</span>
+            <span class="w-60">{{Intl.NumberFormat().format(calculation.totalSumm)}} &#8376;</span>
+        </div>
+        <div class="d-flex">
+            <span class="w-40 mr-2 text-right">Коммисия:</span>
+            <span class="w-60">{{Intl.NumberFormat().format(calculation.commision)}} &#8376;</span>
+        </div>
     </div>
-    <span v-else>
-        Попробуйте еще раз
-    </span>
+    <div class="text-center" v-else>Попробуйте еще раз</div>
     <router-link
         to="/"
-        class="text-azure btn mt-5 d-flex justify-content-center align-items-center">
+        class="btn mt-5 d-flex justify-content-center align-items-center text-azure text-center">
         {{isSuccessPay ? 'OK' : 'ПОВТОРИТЬ'}}
     </router-link>
 </div>

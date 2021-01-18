@@ -143,6 +143,9 @@ input:disabled {
 .text-left {
     text-align: left !important;
 }
+.text-right {
+    text-align: right;
+}
 .text-gray {
     color: gray
 }
@@ -154,4 +157,10 @@ input:disabled {
 }
 .font-size-15px {
     font-size: 15px;
+}
+.w-60 {
+    width: 60%;
+}
+.w-40 {
+    width: 40%;
 }
