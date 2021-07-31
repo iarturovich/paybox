@@ -139,6 +139,7 @@ export default {
       event.target.setSelectionRange(selectionStart, selectionEnd)
     },
     selectTab () {
+      console.log(1)
       const nodeList = document.querySelectorAll('input')
       const nextIndex = [...nodeList].findIndex(f => f === event.target) + 1
       nodeList.item(nextIndex).focus()
